@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>กำลังเตรียมการเชื่อมต่อ…</title>
+
+  <!-- ① ใส่ลิงก์ของคุณตรงนี้ (Resource Hints) -->
+  <!--   - เปลี่ยน LINK_1 / LINK_2 / LINK_3 เป็นโดเมนจริง (ไม่ต้องใส่ / ท้ายสุด)
+         - ควรใช้ https:// ให้ครบทุกตัว -->
+  <link rel="dns-prefetch" href="//king-advice.store">
+  <link rel="preconnect" href="https://king-advice.store" crossorigin>
+  <link rel="dns-prefetch" href="//king-foxit.store">
+  <link rel="preconnect" href="https://king-foxit.store" crossorigin>
+  <link rel="dns-prefetch" href="//kingauto-sweetsong.store">
+  <link rel="preconnect" href="https://kingauto-sweetsong.store" crossorigin>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg1:#0b0b10;--bg2:#10121a;--text:#f6f7fb;--muted:#b6bdd2;--border:rgba(255,255,255,.08);
+      --p1:#6ee7ff;--p2:#7c4dff;--acc:#00ffa9;--warn:#ffb020;--err:#ff6b6b;
+    }
+    [data-theme="light"]{--bg1:#eef2ff;--bg2:#e5e7eb;--text:#0f172a;--muted:#475569;--border:rgba(0,0,0,.08);--p1:#2563eb;--p2:#7c3aed;--acc:#059669}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:'Outfit',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--text);
+      background:radial-gradient(1200px 800px at 15% 20%, rgba(124,77,255,.22) 0%, transparent 50%),
+                 radial-gradient(1000px 700px at 85% 80%, rgba(110,231,255,.18) 0%, transparent 45%),
+                 linear-gradient(180deg,var(--bg1) 0%, var(--bg2) 100%);
+      min-height:100vh;display:grid;place-items:center;padding:24px;overflow:hidden}
+    .shell{width:min(980px,96vw);border:1px solid var(--border);border-radius:28px;overflow:hidden;
+      background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+      box-shadow:0 30px 80px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.03);
+      display:grid;grid-template-columns:1.1fr .9fr}
+    @media(max-width:880px){.shell{grid-template-columns:1fr}}
+    .left{padding:38px 34px 28px 34px;display:grid;grid-template-rows:auto auto auto 1fr auto;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .badge{width:44px;height:44px;border-radius:12px;position:relative;background:conic-gradient(from 0deg,var(--p1),var(--acc),var(--p2),var(--p1))}
+    .badge:after{content:"";position:absolute;inset:2px;border-radius:10px;background:#0d0f17}
+    h1{font-size:22px;font-weight:800}
+    .chip{font-size:12px;color:#0c0;background:rgba(0,255,170,.14);border:1px solid rgba(0,255,170,.35);padding:4px 8px;border-radius:999px;font-weight:700}
+    .headline{font-size:28px;font-weight:800}
+    .sub{color:var(--muted)}
+    .bar{height:12px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden}
+    .fill{height:100%;width:0%;background:linear-gradient(90deg,var(--p2),var(--acc),var(--p1));filter:drop-shadow(0 0 12px rgba(110,231,255,.45));transition:width .3s cubic-bezier(.2,.9,.2,1)}
+    .ptext{font-size:12.5px;color:var(--muted);font-weight:700}
+    .log{min-height:150px;max-height:220px;overflow:auto;padding:12px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid var(--border)}
+    .row{display:grid;grid-template-columns:22px 1fr;gap:10px;padding:8px 6px;border-left:3px solid transparent;opacity:0;animation:pop .45s ease forwards}
+    .row.info{background:linear-gradient(90deg,rgba(10,28,53,0),rgba(10,28,53,.18));border-left-color:#3da9ff}
+    .row.ok{background:linear-gradient(90deg,rgba(5,39,24,0),rgba(5,39,24,.18));border-left-color:#00e69a}
+    .row.warn{background:linear-gradient(90deg,rgba(61,44,10,0),rgba(61,44,10,.18));border-left-color:var(--warn)}
+    .row.err{background:linear-gradient(90deg,rgba(53,10,10,0),rgba(53,10,10,.18));border-left-color:var(--err)}
+    @keyframes pop{from{transform:translateY(6px);opacity:0}to{transform:translateY(0);opacity:1}}
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{appearance:none;border:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));color:var(--text);padding:10px 16px;border-radius:12px;font-weight:700;cursor:pointer}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{background:linear-gradient(90deg,var(--p2),var(--p1));border-color:rgba(255,255,255,.2)}
+    .right{display:grid;place-items:center;background:radial-gradient(640px 320px at 50% 10%, rgba(0,255,170,.10), transparent 60%),radial-gradient(800px 480px at 50% 90%, rgba(124,77,255,.12), transparent 60%)}
+    .ring{width:320px;height:320px;position:relative;display:grid;place-items:center}
+    .ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+    .halo{position:absolute;inset:-16px;border-radius:999px;background:conic-gradient(from 0deg,rgba(124,77,255,.25),rgba(0,255,170,.22),rgba(110,231,255,.25),rgba(124,77,255,.25));filter:blur(22px);opacity:.65;animation:spin 16s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .center{position:absolute;text-align:center}
+    .big{font-size:52px;font-weight:900}
+    .small{color:var(--muted);font-weight:700}
+  </style>
+</head>
+<body>
+  <section class="shell" aria-live="polite" aria-busy="true">
+    <div class="left">
+      <div class="brand">
+        <div class="badge" aria-hidden="true"></div>
+        <div>
+          <h1>HyperPulse Router</h1>
+          <span class="chip">Auto‑select & Failover</span>
+        </div>
+      </div>
+
+      <div class="headline">เลือกเส้นทางที่เร็วที่สุดให้คุณ</div>
+      <div class="sub" id="status">เริ่มต้นระบบ…</div>
+
+      <div class="bar"><div class="fill" id="fill"></div></div>
+      <div class="ptext" id="ptext">0% • เตรียมพร้อม</div>
+
+      <div class="log" id="log"></div>
+
+      <div class="actions">
+        <button class="btn primary" id="skip">ข้ามเซิร์ฟเวอร์นี้</button>
+        <button class="btn" id="retry" style="display:none">ลองใหม่</button>
+        <button class="btn" id="theme">สลับธีม</button>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="ring">
+        <div class="halo" aria-hidden="true"></div>
+        <svg viewBox="0 0 120 120" aria-label="สถานะแบบวงแหวน">
+          <defs>
+            <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#7c4dff"/>
+              <stop offset="50%" stop-color="#00ffa9"/>
+              <stop offset="100%" stop-color="#6ee7ff"/>
+            </linearGradient>
+          </defs>
+          <circle cx="60" cy="60" r="52" stroke="rgba(255,255,255,.08)" stroke-width="8" fill="none"/>
+          <circle id="arc" cx="60" cy="60" r="52" stroke="url(#g)" stroke-width="8" stroke-linecap="round" fill="none" stroke-dasharray="326.72" stroke-dashoffset="326.72"/>
+        </svg>
+        <div class="center">
+          <div class="big" id="percent">0%</div>
+          <div class="small" id="small">กำลังเตรียมพร้อม…</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // ===== Theme init & toggle =====
+    (function(){
+      const root = document.documentElement;
+      const saved = localStorage.getItem('theme');
+      const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+      root.setAttribute('data-theme', saved || (prefersLight? 'light' : 'dark'));
+      document.getElementById('theme').addEventListener('click', ()=>{
+        const cur = root.getAttribute('data-theme')==='light'?'dark':'light';
+        root.setAttribute('data-theme', cur);
+        localStorage.setItem('theme', cur);
+      });
+    })();
+
+    // ===== Helpers =====
+    const $ = (id)=>document.getElementById(id);
+    const logBox=$('log'),fill=$('fill'),arc=$('arc');
+    const percentEl=$('percent'),ptext=$('ptext'),statusEl=$('status'),small=$('small');
+    const CIRC=2*Math.PI*52;
+    const log=(t,cls='info',ic='•')=>{const r=document.createElement('div');r.className=`row ${cls}`;r.innerHTML=`<div>${ic}</div><div>${new Date().toLocaleTimeString('th-TH',{hour12:false,hour:'2-digit',minute:'2-digit',second:'2-digit'})} ${t}</div>`;logBox.appendChild(r);logBox.scrollTop=logBox.scrollHeight};
+    const setLinear=(p,h)=>{fill.style.width=p+'%';ptext.textContent=`${p|0}% • ${h}`};
+    const setRadial=(p)=>{arc.style.strokeDashoffset=CIRC*(1-p/100);percentEl.textContent=(p|0)+'%'};
+    const delay=(ms)=>new Promise(r=>setTimeout(r,ms));
+
+    // ===== ② ใส่ลิงก์ของคุณตรงนี้ (รายการปลายทาง) =====
+    //   - เปลี่ยน LINK_1 / LINK_2 / LINK_3 ให้เป็นโดเมนจริง (ไม่ซ้ำกัน)
+    //   - ต้องใช้ https:// ทุกตัว และไม่ใส่ / ต่อท้าย
+    const SERVERS=[
+      {url:'https://king-advice.store',name:'เซิร์ฟเวอร์หลัก',priority:1},
+      {url:'https://king-foxit.store',name:'เซิร์ฟเวอร์สำรอง A',priority:2},
+      {url:'https://kingauto-sweetsong.store',name:'เซิร์ฟเวอร์สำรอง B',priority:3},
+    ];
+
+    // ===== Progress Sim =====
+    let prog=0, hint='เตรียมพร้อม';
+    const sim= setInterval(()=>{ if(prog<88) prog+=1+Math.random()*1.5; setLinear(prog,hint); setRadial(prog); },180);
+
+    // ===== Weighted order (70% ตาม priority / 30% สุ่ม) =====
+    function order(list){ return (Math.random()>0.3) ? [...list].sort((a,b)=>a.priority-b.priority) : [...list].sort(()=>Math.random()-0.5); }
+
+    // ===== Ping via favicon (ไม่ติด CORS) =====
+    function ping(u,timeout){
+      return new Promise(res=>{
+        const img=new Image(); let done=false; const t=setTimeout(()=>{ if(!done){done=true;cleanup();res(false);} },timeout);
+        function cleanup(){clearTimeout(t); img.onload=img.onerror=null;}
+        img.onload=()=>{ if(!done){done=true;cleanup();res(true);} };
+        img.onerror=()=>{ if(!done){done=true;cleanup();res(true);} }; // DNS ok even 404
+        img.src=u.replace(/\/$/,'')+ '/favicon.ico?_=' + Math.random();
+      });
+    }
+
+    class Manager{
+      constructor(){ this.list=order(SERVERS); this.i=0; this.net=navigator.connection; this.bind(); }
+      bind(){ $('skip').onclick=()=>{log('ผู้ใช้กดข้ามเซิร์ฟเวอร์', 'info','⏭'); this.i++; this.try();}; $('retry').onclick=()=>this.retry(); }
+      tmo(){ const base=5600; if(!this.net) return base+Math.random()*1200; switch(this.net.effectiveType){case 'slow-2g':return base*2.3;case '2g':return base*1.7;case '3g':return base*1.1;case '4g':return base*.85;default:return base;} }
+      async start(){ log('เริ่มต้นชุดทดสอบ','info','🚀'); await delay(400); this.try(); }
+      async try(){ if(this.i>=this.list.length) return this.failAll(); const s=this.list[this.i]; hint=`ตรวจสอบ ${s.name}`; statusEl.textContent=hint+'…'; log(`ทดสอบ ${s.name} (${this.i+1}/${this.list.length})`,'info','🔄'); const ok=await Promise.race([ping(s.url,this.tmo()), delay(this.tmo()).then(()=>false)]); if(ok) return this.ok(s); log(`${s.name} ไม่ตอบสนองตามเวลา`,'warn','⚠️'); this.i++; this.try(); }
+      ok(s){ clearInterval(sim); prog=100; setLinear(prog,'พร้อมเชื่อมต่อ'); setRadial(prog); small.textContent='เชื่อมต่อสำเร็จ'; log(`เปลี่ยนเส้นทางไปยัง ${s.name}`,'ok','✅'); setTimeout(()=>{ try{window.top.location.href=s.url;}catch{window.location.assign(s.url);} },300); }
+      failAll(){ clearInterval(sim); prog=0; setLinear(0,'เชื่อมต่อไม่สำเร็จ'); setRadial(0); statusEl.textContent='เชื่อมต่อไม่สำเร็จ'; log('ไม่พบปลายทางที่พร้อมใช้งาน','err','❌'); $('retry').style.display='inline-block'; $('skip').style.display='none'; document.querySelector('.shell').setAttribute('aria-busy','false'); }
+      retry(){ this.list=order(SERVERS); this.i=0; prog=0; setLinear(0,'เริ่มใหม่'); setRadial(0); logBox.innerHTML=''; $('retry').style.display='none'; $('skip').style.display='inline-block'; this.start(); }
+    }
+
+    window.addEventListener('load',()=>new Manager().start());
+  </script>
+</body>
+</html>
